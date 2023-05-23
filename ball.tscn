@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://del78s68sjq1j"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_iw2wm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_004af"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_si6kt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ksjaw"]
+noise_type = 4
+frequency = 0.041
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d8oki"]
+seamless = true
+noise = SubResource("FastNoiseLite_ksjaw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iaaq0"]
+metallic = 0.89
+roughness = 0.26
+roughness_texture = SubResource("NoiseTexture2D_d8oki")
+uv1_triplanar = true
+proximity_fade_distance = 3.18
+
+[sub_resource type="SphereMesh" id="SphereMesh_1eidj"]
+material = SubResource("StandardMaterial3D_iaaq0")
+
+[node name="Ball" type="RigidBody3D"]
+mass = 0.06
+physics_material_override = SubResource("PhysicsMaterial_004af")
+script = ExtResource("1_iw2wm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_si6kt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_1eidj")

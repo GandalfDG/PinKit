@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dofmtssyrmi30"]
+
+[ext_resource type="PackedScene" uid="uid://del78s68sjq1j" path="res://ball.tscn" id="1_hn7wr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sw5me"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jvd4p"]
+sky_material = SubResource("ProceduralSkyMaterial_sw5me")
+
+[sub_resource type="Environment" id="Environment_g42m7"]
+background_mode = 2
+sky = SubResource("Sky_jvd4p")
+tonemap_mode = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g42m7")
+
+[node name="Ball" parent="." instance=ExtResource("1_hn7wr")]
+freeze = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.71501, 0.378101, -0.588049, 0, 0.841133, 0.540828, 0.699115, -0.386697, 0.601419, -1.00125, 0.920846, 1.02401)
